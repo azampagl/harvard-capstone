@@ -47,3 +47,28 @@ saw when dealing with them. This part isn't long but it may be qualitatively of 
 to the MBTA system.
 * pg 139: Looks at change in passenger behaviors, but relies on the unique identification of passengers
 through their fare-collection ID.
+
+*automatic Data for Applied Railway Management: Passenger Demand...*, Michael Frumin
+
+* **Quick summary:** A detailed study in passenger behavior using fare-collection data and historical 
+schedules of planned departures. This extra dimension of scheduled planned departures may make these
+analyses inapplicable for our research
+
+* pg 93: This chapter will be of the most use to us as it studies 'Passenger Incidence Behavior'. The term
+refers to people arriving somewhereand is incident to public transport. This is a particular interest to us
+as there is a part dedicated to studying the London Overground (akin to the MBTA buses)
+* pg 95: Recapping some work done by Jolliffe and Hutchinson in which they studied the rates at which 
+passengers arrived at a stop to wait for the bus, one key finding was that "passengers adjust their incidence
+behavior...based on knowledge of the bus timetable and historical bus performance." Could be useful if we 
+look at effectiveness of MBTA alerts on arrival times. We may run into problems with the fact that MBTA bus
+data includes the route, but not the particular stop.
+* pg 95-97: Some of the studies use a very special subset to gain their insights; bus stops that don't 
+intersect with other routes, aren't terminal stops, with constant headways.
+* pg 108: Plots showing a good way to display the distribution of waiting times (normalized by headway) 
+for several of London's transportation routes. We can take note of the way that they've subdivided the day.
+Note the local peak at 0 for many of the histograms as evidence of many people timing their arrival based 
+on the schedule but arriving late. Most show a larger peak towards the end of the headway 'indicating some 
+type of safety margin or waiting-time minimization behavior'. 
+* pg 108-110: We could perform many of these analyses on our own data using just the fare-collection data
+and knowledge of the headway for a particular route at a given time of day. Might be tough if the bus fare-
+collection data only gives us the route and not the stop.
