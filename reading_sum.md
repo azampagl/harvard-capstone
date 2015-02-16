@@ -48,7 +48,7 @@ to the MBTA system.
 * pg 139: Looks at change in passenger behaviors, but relies on the unique identification of passengers
 through their fare-collection ID.
 
-*automatic Data for Applied Railway Management: Passenger Demand...*, Michael Frumin
+*Automatic Data for Applied Railway Management: Passenger Demand...*, Michael Frumin
 
 * **Quick summary:** A detailed study in passenger behavior using fare-collection data and historical 
 schedules of planned departures. This extra dimension of scheduled planned departures may make these
@@ -72,3 +72,37 @@ type of safety margin or waiting-time minimization behavior'.
 * pg 108-110: We could perform many of these analyses on our own data using just the fare-collection data
 and knowledge of the headway for a particular route at a given time of day. Might be tough if the bus fare-
 collection data only gives us the route and not the stop.
+
+*MBTA Blue Book,2014*
+
+* **Quick summary:** Good summary of stats put out by the MBTA as well as general info about how the rail and
+bus systems are run.
+
+* Quick Subway facts: 
+ * 121 stops (6 shared stations: North Station, Haymarket, Govt center, State,Park, Downtown Crossing)
+ 
+* Ch 2, pg 4: Charts showing the highest volume stations. For the shared stations, shows the estimated
+breakdown according to the lines flowing into the station. Good ground for any weighting system we may be 
+interested in. 
+* Ch 2, pg 5: MBTA Subway Ops Line Statistics show the number of trains, size of t he trains, and the 
+headway of each at the various times throughout the day.
+* Ch 2, pg 8: Shows frequency of trains for all lines throughout the day. 
+* When performing our analysis, refer to the sections below to validate findings or to get additional 
+information for any of the lines.
+	* Ch 2, pg 9: Avg weekday entries on RED LINE aggregated by stop for successive years
+	* Ch 2, pg 16: Avg weekday entries on GREEN LINE aggregated by stop for successive years
+	 * pg 17: Shows weekday boarding numbers for the Green Line light rail (once it goes above ground).
+	 Figures take into account boarding in either direction.
+	* Ch 2, pg 21: Avg weekday entries on ORANGE LINE aggregated by stop for successive years
+	* Ch 2, pg 25: Avg weekday entries on BLUE LINE aggregated by stop for successive years
+	* Ch 3: Silver Line. Not sure whether or not we want to include this into our models but similar figures 
+	to the ones for the main rail lines are also available here.
+
+* Quick bus facts:
+ * 170 routes, not including emergency routes in place for rail interruptions or shuttle service in high-
+ demand times
+ * approx 1,000 vehicles
+* Ch 3b, pg 2-5: Bus ridership figures in both directions by weekday/weekend
+* Ch 3b, pg 6-8: Ranking of busiest bus routes according to boarding. No separation of direction.
+
+ 
