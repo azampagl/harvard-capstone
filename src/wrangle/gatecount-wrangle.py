@@ -42,10 +42,12 @@ def process(data, start, end):
     This will fix the service times and make sure the the values are within
     the date range provided.
 
+    If the features boolean is provided, additional features will be added.
+
     Key arguments:
-    data  -- The pandas dataframe (csv file).
-    start -- The start datetime.
-    end   -- The end datetime.
+    data     -- The pandas dataframe (csv file).
+    start    -- The start datetime.
+    end      -- The end datetime.
     """
 
     # Convert the servicedate field to a datetime object.
@@ -60,23 +62,6 @@ def process(data, start, end):
         np.floor(data['servicetime'] / 100) * MINUTES_PER_HOUR \
         + np.mod(data['servicetime'], 100),
         dtype='timedelta64[m]')
-
-    # Find the service hour (0 - 30?).
-    #data['service_hours'] = np.array( \
-    #    np.floor(data['servicetime'] / 100))
-
-    # Find the service minutes as a fraction (0 - 1.0).
-    #data['service_minutes'] = pd.DatetimeIndex(
-    #    data['service_datetime']).minute
-
-    # Find the service minutes as a fraction (0 - 1.0).
-    #data['service_minutes_as_frac'] = pd.DatetimeIndex(
-    #    data['service_datetime']).minute \
-    #    / float(MINUTES_PER_HOUR)
-
-    # Find the day of the week.
-    #data['service_day_of_week'] = pd.DatetimeIndex(
-    #    data['service_datetime']).weekday
 
     data.drop('servicedate', axis=1, inplace=True)
     data.drop('servicetime', axis=1, inplace=True)
@@ -103,7 +88,10 @@ def main(args):
         for file in files:
             with open(os.path.join(root, file), 'r') as file_handle:
                 data = data.append(
-                    process(pd.read_csv(file_handle), args['s'], args['e']))
+                    process(
+                        pd.read_csv(file_handle),
+                        args['s'],
+                        args['e']))
 
     # Save to disk.
     data.to_csv(args['o'], index=False)
@@ -116,7 +104,7 @@ def usage():
     "The following are arguments required:\n" +
     "\t-i: the input directory containing the csv files.\n" +
     "\t-s: the (inclusive) start date (e.g. \"2015/01/01\").\n" +
-    "\t-s: the (inclusive) end date (e.g. \"2015/01/31\").\n" +
+    "\t-e: the (inclusive) end date (e.g. \"2015/01/31\").\n" +
     "\t-o: the output csv file.\n" +
     "\n" +
     "Example Usage:\n" +
