@@ -10,6 +10,7 @@ The style guide follows the strict python PEP 8 guidelines.
 @copyright 2015
 """
 import getopt
+import json
 import os
 import sys
 
@@ -28,12 +29,59 @@ DATETIME_STR = "%Y/%m/%d"
 # The number of days to look back for snow history.
 SNOW_DAYS_HISTORY = 14
 
+# The features inside the wunderground files to look for.
+FEATURES_RAW = [
+    'date', 'fog', 'hail', 'rain', 'snow',
+    'mintempi', 'maxtempi', 'meantempi',
+    'precipi', 'snowfalli', 'meanwindspdi',
+    'minvisi', 'maxvisi', 'meanvisi',
+]
+
+# The desired columns of the dataframe.
+FEATURES_PROPER = [
+    'date', 'fog', 'hail', 'rain', 'snow',
+    'temp_min', 'temp_max', 'temp_mean',
+    'rain_fall', 'snow_fall', 'wind_speed',
+    'vis_min', 'vis_max', 'vis_mean'
+]
+
 
 #
 # Methods
 #
 
-def process(data, start, end):
+
+def load(date, json):
+    """
+    Loads the json file into a dataframe.
+
+    Key arguments:
+    date  -- The date of the entry.
+    json  -- The wunderground json response.
+    """
+
+    summary = json['history']['dailysummary'][0]
+
+    data = pd.DataFrame().append(pd.Series(summary), ignore_index=True)
+
+    # Clean any T values.
+    data = data.replace({"T": 0})
+
+    # Drop unecessary columns.
+    data = data[FEATURES_RAW]
+
+    # Reset the date field.
+    data['date'] = date
+
+    # Rename the columns for readability.
+    data.columns = FEATURES_PROPER
+
+    data['date']
+
+    return data
+
+
+def process(data):
     """
     Processes the dataframe and returns a wrangled
     data frame.
@@ -42,46 +90,35 @@ def process(data, start, end):
     the date range provided.
 
     Key arguments:
-    data  -- The pandas dataframe (csv file).
-    start -- The start datetime.
-    end   -- The end datetime.
+    date  -- The current dataframe.
     """
 
-    # Drop unecessary columns.
-    data = data[[
-        'date',
-        'fog',
-        'rain',
-        'snow',
-        'mintempi',
-        'maxtempi',
-        'meantempi',
-        'precipi',
-        'snowfalli',
-        'meanwindspdi']]
-
-    # Rename the columns for readability.
-    data.columns = [
-        'date',
-        'fog',
-        'rain',
-        'snow',
-        'temp_min',
-        'temp_max',
-        'temp_mean',
-        'precip',
-        'snow_fall',
-        'wind_speed']
-
+    # Convert the date fields.
     data['date'] = pd.to_datetime(data['date'])
 
+    # Convert the bool fields.
+    bools = ['fog', 'hail', 'rain', 'snow']
+
+    data[bools] = data[bools].astype(int)
+
+    # Convert the floating fields.
+    floats = ['temp_min', 'temp_max', 'temp_mean',
+        'rain_fall', 'snow_fall', 'wind_speed',
+        'vis_min', 'vis_max', 'vis_mean']
+
+    data[floats] = data[floats].astype(float)
+
     data = data.apply(lambda row: add_rain_predict(data, row), axis=1)
+    data = data.apply(lambda row: add_rain_fall_predict(data, row), axis=1)
 
     data = data.apply(lambda row: add_snow_predict(data, row), axis=1)
     data = data.apply(lambda row: add_snow_fall_predict(data, row), axis=1)
+
     data = data.apply(lambda row: add_snow_accum(data, row), axis=1)
+    data = data.apply(lambda row: add_snow_accum_predict(data, row), axis=1)
 
     return data
+
 
 def add_rain_predict(data, row):
     """
@@ -96,6 +133,19 @@ def add_rain_predict(data, row):
 
     return row
 
+def add_rain_fall_predict(data, row):
+    """
+    Adds a rain fall prediction column to the desired row (day).
+
+    Key arguments:
+    data -- The entire data set.
+    row  -- The current row.
+    """
+
+    row['rain_fall_predict'] = get_predict_by_column(data, row, 'rain_fall', 0.0)
+
+    return row
+
 def add_snow_accum(data, row):
     """
     Adds a snow accumulation column for the desired row (day).
@@ -104,7 +154,7 @@ def add_snow_accum(data, row):
     data -- The entire weather data set.
     row  -- The row we are manipulating.
     """
-    
+
     # Find all of the necessary days in history.
     history = data[
         (data['date'] >= row['date'] - np.timedelta64(SNOW_DAYS_HISTORY, 'D')) & \
@@ -127,6 +177,19 @@ def add_snow_accum(data, row):
     # Add the current days snow fall to the mix and
     #  add the column to the row.
     row['snow_accum'] = round(snow_accum + row['snow_fall'], 1)
+
+    return row
+
+def add_snow_accum_predict(data, row):
+    """
+    Adds a rain fall prediction column to the desired row (day).
+
+    Key arguments:
+    data -- The entire data set.
+    row  -- The current row.
+    """
+
+    row['snow_accum_predict'] = get_predict_by_column(data, row, 'snow_accum', 0.0)
 
     return row
 
@@ -199,12 +262,20 @@ def main(args):
     args['s'] = datetime.strptime(args['s'], DATETIME_STR)
     args['e'] = datetime.strptime(args['e'], DATETIME_STR)
 
-    # Create a blank data frame.
-    with open(args['i'], 'r') as file_handle:
-        data = process(pd.read_csv(file_handle), args['s'], args['e'])
+    data = pd.DataFrame()
 
-        # Save to disk.
-        data.to_csv(args['o'], index=False)
+    # Create a blank data frame.
+    for root, dirs, files in os.walk(args['i']):
+        for file in files:
+            date = datetime.strptime(file, '%Y%m%d.json').date()
+            if (date >= args['s'].date() and date <= args['e'].date()):
+                with open(os.path.join(root, file), 'r') as file_handle:
+                    data = data.append(load(date, json.load(file_handle)))
+
+    data = process(data)
+
+    # Save to disk.
+    data.to_csv(args['o'], index=False)
 
 
 def usage():
@@ -214,7 +285,7 @@ def usage():
     "The following are arguments required:\n" +
     "\t-i: the input wunderground csv file.\n" +
     "\t-s: the (inclusive) start date (e.g. \"2015/01/01\").\n" +
-    "\t-s: the (inclusive) end date (e.g. \"2015/01/31\").\n" +
+    "\t-e: the (inclusive) end date (e.g. \"2015/01/31\").\n" +
     "\t-o: the output csv file.\n" +
     "\n" +
     "Example Usage:\n" +
