@@ -9,10 +9,6 @@ The style guide follows the strict python PEP 8 guidelines.
 @requires Python >=2.7
 @copyright 2015
 """
-import getopt
-import os
-import sys
-
 import pandas as pd
 
 
@@ -28,6 +24,20 @@ MINUTES_PER_HOUR = 60
 #
 # Methods.
 #
+
+
+def init(data):
+    """
+    Initializes the current columns to the proper data type(s).
+
+    Key arguments:
+    date  -- The current dataframe.
+    """
+
+    # Convert the date fields.
+    data['service_datetime'] = pd.to_datetime(data['service_datetime'])
+
+    return data
 
 
 def add_day_of_week(data):
