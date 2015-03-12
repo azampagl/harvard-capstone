@@ -37,6 +37,9 @@ def init(data):
     # Convert the date fields.
     data['service_datetime'] = pd.to_datetime(data['service_datetime'])
 
+    # Add index.
+    #data = data.set_index('service_datetime', append=True)
+
     return data
 
 
