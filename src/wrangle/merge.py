@@ -26,15 +26,21 @@ def main(args):
     """
 
     # Load in the two data sets.
+    stations = pd.read_csv(args['s'])
     gatecounts = pd.read_csv(args['g'])
     weather = pd.read_csv(args['w'])
 
-    # Rename the date column to match the gatecount day column.
-    weather.rename(columns={'date': 'service_day'}, inplace=True)
+    # Merge the data sets.
+    data = pd.merge(stations, gatecounts, how='right', left_on='stationid', right_on='locationid')
+    data = pd.merge(data, weather, how='left', left_on='service_day', right_on='date')
 
-    # Merge the two columns.
-    data = pd.merge(gatecounts, weather, how='left')
-    
+    # Drop the two columns we merged on.
+    data.drop('locationid', axis=1, inplace=True)
+    data.drop('date', axis=1, inplace=True)
+
+    # Rename stationid to columnid for legacy support of everyones code.
+    data.rename(columns={'stationid': 'locationid'}, inplace=True)
+
     # Save to disk.
     data.to_csv(args['o'], index=False)
 
@@ -46,13 +52,15 @@ def usage():
     "The following are arguments required:\n" +
     "\t-g: the input gatecount csv file.\n" +
     "\t-w: the input weather csv file.\n" +
+    "\t-s: the stations csv file.\n" +
     "\t-o: the output csv file.\n" +
     "\n" +
     "Example Usage:\n" +
-    "\tpython gatecount-weather-merge.py " + \
+    "\tpython merge.py " + \
     "-g \"./gatecounts.csv\" " + \
     "-w \"./weather.csv\" " + \
-    "-o \"./gatecounts-weather.csv\"\n" +
+    "-s \"./stations.csv\" " + \
+    "-o \"./mbta.csv\"\n" +
     "\n")
 
 
@@ -61,7 +69,7 @@ if __name__ == "__main__":
 
     # Determine command line arguments.
     try:
-        rawargs, _ = getopt.getopt(sys.argv[1:], 'g:w:o:')
+        rawargs, _ = getopt.getopt(sys.argv[1:], 'g:w:s:o:')
     except getopt.GetoptError:
         usage()
         sys.exit(2)
@@ -73,7 +81,7 @@ if __name__ == "__main__":
         args[o[1]] = a
 
     # The following arguments are required in all cases.
-    for arg in ['g', 'w', 'o']:
+    for arg in ['g', 'w', 's', 'o']:
         if not arg in args:
             usage()
             sys.exit(2)
