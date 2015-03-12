@@ -1,5 +1,5 @@
 """
-Adds additional entry features to a gatecount/weather data set.
+Adds additional entry features to a data set.
 
 The style guide follows the strict python PEP 8 guidelines.
 @see http://www.python.org/dev/peps/pep-0008/
@@ -14,24 +14,16 @@ import pandas as pd
 
 
 #
-# Consts
-#
-
-
-# The name of the datetime column.
-#DATE_COL = 'service_day'
-
-
-#
 # Methods.
 #
+
 
 def init(data):
     """
     Initializes the current columns to the proper data type(s).
 
     Key arguments:
-    date -- The current dataframe.
+    data -- The current dataframe.
     """
 
     # Convert the date fields.
@@ -66,7 +58,7 @@ def add_previous_week(data, weeks_ago = 1):
 
         # Set the entries from X weeks ago.
         column = 'entries_weeks_ago_' + str(weeks_ago)
-        row[column] = None
+        row[column] = np.nan
         if (len(entries) == 1):
             row[column] = entries[0]
 
