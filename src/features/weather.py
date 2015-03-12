@@ -1,5 +1,5 @@
 """
-Adds additional weather features to a gatecount/weather data set.
+Adds additional weather features to a data set.
 
 The style guide follows the strict python PEP 8 guidelines.
 @see http://www.python.org/dev/peps/pep-0008/
@@ -34,7 +34,7 @@ def init(data):
     Initializes the current columns to the proper data type(s).
 
     Key arguments:
-    date -- The current dataframe.
+    data -- The current dataframe.
     """
 
     # Convert the date fields.
