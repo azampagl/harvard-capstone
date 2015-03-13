@@ -35,6 +35,7 @@ def init(data):
     """
 
     # Convert the date fields.
+    data['service_day'] = pd.to_datetime(data['service_day'])
     data['service_datetime'] = pd.to_datetime(data['service_datetime'])
 
     # Add index.
@@ -51,7 +52,7 @@ def add_day_of_week(data):
     data -- The data to augment to.
     """
 
-    data['day_of_week'] = pd.DatetimeIndex(data['service_datetime']).weekday
+    data['day_of_week'] = pd.DatetimeIndex(data['service_day']).weekday
 
     return data
 
@@ -66,7 +67,7 @@ def add_day_of_week_binary(data):
 
     def apply(row):
         # Find the current weekday.
-        dow = row['service_datetime'].weekday()
+        dow = row['service_day'].weekday()
 
         # 7 days in a week, Monday=0.
         for i in xrange(7):
@@ -120,7 +121,7 @@ def add_month_binary(data):
 
     def apply(row):
         # Find the current weekday.
-        month = row['service_datetime'].month
+        month = row['service_day'].month
 
         # Loop through each month
         for i in xrange(1, 13):
@@ -147,7 +148,7 @@ def add_weekend(data):
 
     def apply(row):
         # Find the current weekday.
-        dow = row['service_datetime'].weekday()
+        dow = row['service_day'].weekday()
 
         # Determine the column name.
         column = 'weekend'
