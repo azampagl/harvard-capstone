@@ -171,8 +171,10 @@ def add_service_minutes_fraction(data):
     data -- The data to augment to.
     """
 
-    data['service_minutes_fraction'] = pd.DatetimeIndex(
+    data['service_minutes_fraction'] = pd.DatetimeIndex(data['service_datetime']).hour+pd.DatetimeIndex(
         data['service_datetime']).minute \
         / float(MINUTES_PER_HOUR)
+
+
 
     return data
