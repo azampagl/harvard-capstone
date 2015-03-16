@@ -103,6 +103,8 @@ def add_snow_accum(data):
             (data[DATE_COL] >= row[DATE_COL] - np.timedelta64(SNOW_DAYS_HISTORY, 'D')) & \
             (data[DATE_COL] < row[DATE_COL])]
 
+        # Make sure we only have unqiue days.
+        history = history.drop_duplicates(DATE_COL)
 
         # Loop through each day in history and add the weighted snow fall
         #  for that historic day to the snow accumulation for the current day.
@@ -113,7 +115,7 @@ def add_snow_accum(data):
             # How much snow fall for that day?
             snow_fall = history_row[1]['snow_fall']
             # The weight for the day is the 1/number of days ago
-            weight = 1.0 / (row[DATE_COL] - day).days
+            weight = 1.0 / ((row[DATE_COL] - day).days + 1.0)
             # Add the weighted snow fall to the current accumulation.
             snow_accum += snow_fall * weight
 
