@@ -51,4 +51,30 @@ footer .footer-below {
   background-color: #000;
 }
 
-/* #page-top > footer > div.footer-above > div > div */
+#sponsors-and-links a:hover {
+  color: #000;
+}
+
+#contact-us,
+#contact-us table,
+#contact-us td {
+  font-size: 1.0em;
+  margin: 0 auto;
+  padding: 5px;
+  text-align: center;
+}
+
+#contact-us table {
+  margin-top: -25px;
+}
+
+#contact-us a {
+  color: #fff;
+}
+
+/* */
+.section-header p {
+  font-size: .9em;
+  margin-top: -15px;
+  padding-bottom: 30px;
+}

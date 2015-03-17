@@ -17,6 +17,7 @@
     <!-- Custom CSS -->
     <link href="css/freelancer.css" rel="stylesheet">
     <link href="css/mbta.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -58,7 +59,7 @@
                         <a href="#about">About</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#portfolio">Approach</a>
+                        <a href="#questions">Questions</a>
                     </li>
                     <li class="page-scroll">
                         <a href="#contact">Contact</a>
@@ -89,10 +90,11 @@
     <!-- About Section -->
     <section id="about">
         <div class="container">
-            <div class="row">
+            <div class="row section-header">
                 <div class="col-lg-12 text-center">
                     <h2>About</h2>
-                    <hr class="star-light">
+                    <hr class="star-primary">
+                    <p>Using data to provide insight to ridership patterns.</p>
                 </div>
             </div>
             <div class="row">
@@ -106,7 +108,71 @@
         </div>
     </section>
 
+    <!-- Questions -->
+    <section id="questions">
+        <div class="container">
+            <div class="row section-header">
+                <div class="col-lg-12 text-center">
+                    <h2>Questions</h2>
+                    <hr class="star-primary">
+                    <p>In order to improve the MBTA we needed to ask the right questions.<br>Afterall, <i>"It is not the answer that enlightens, but the question."</i> - Eugene Ionesco</p>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-6 approach-item">
+                    <a href="#">
+                        <span class="fa-stack fa-4x">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-sun-o fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <h4>Weather</h4>
+                    </a>
+                    <p>How does weather affect ridership?</p>
+                </div>
+
+                <div class="col-md-6 approach-item">
+                    <a href="#">
+                        <span class="fa-stack fa-4x">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-ticket fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <h4>Events</h4>
+                    </a>
+                    <p>How do public events affect ridership?</p>
+                </div>
+
+            </div>
+            <div class="row">
+
+              <div class="col-md-6 approach-item">
+                  <a href="#">
+                      <span class="fa-stack fa-4x">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-exchange fa-stack-1x fa-inverse"></i>
+                      </span>
+                      <h4>Correlation</h4>
+                  </a>
+                  <p>What stations are similar?</p>
+              </div>
+
+              <div class="col-md-6 approach-item">
+                  <a href="#">
+                      <span class="fa-stack fa-4x">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
+                      </span>
+                      <h4>Prediction</h4>
+                  </a>
+                  <p>Are we able to predict ridership?</p>
+              </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- Portfolio Grid Section -->
+    <!--
     <section id="portfolio">
         <div class="container">
             <div class="row">
@@ -179,6 +245,7 @@
             </div>
         </div>
     </section>
+    -->
 
     <!-- Footer -->
     <footer id="contact" class="text-center">
@@ -189,7 +256,7 @@
                         <h3>Location</h3>
                         <p>Harvard University<br>Cambridge, MA 02138</p>
                     </div>
-                    <div class="footer-col col-md-4">
+                    <div id="sponsors-and-links" class="footer-col col-md-4">
                         <h3>Sponsors and Links</h3>
                         <ul class="list-inline">
                             <li>
@@ -203,7 +270,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="footer-col col-md-4">
+                    <div id="contact-us" class="footer-col col-md-4">
                         <h3>Contact Us</h3>
                         <table>
                           <tr>
@@ -216,7 +283,7 @@
                             <td><a href="mailto:fpiasevoli@g.harvard.edu">Filip Piasevoli</a></td>
                           </tr>
                           <tr>
-                            <td><a href="mailto:lfadden@g.harvard.edu">Lyla Fadden</a></td>
+                            <td><a href="mailto:azampaglione@g.harvard.edu">Aaron Zampaglione</a></td>
                           </tr>
                         </table>
                     </div>
@@ -251,10 +318,6 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="js/classie.js"></script>
     <script src="js/cbpAnimatedHeader.js"></script>
-
-    <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="js/freelancer.js"></script>
