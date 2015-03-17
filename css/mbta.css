@@ -21,6 +21,7 @@
 header {
     text-align: center;
     color: #fff;
+    background-color: #000;
     background-attachment: scroll;
     background-image: url(../img/header-bg.png);
     background-position: center center;
