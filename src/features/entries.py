@@ -37,7 +37,7 @@ def init(data):
     return data
 
 
-def add_previous_week(data, weeks_ago = 1):
+def add_previous_week(data, weeks_ago = 1, day_col = 'service_datetime'):
     """
     Adds a column that has the same entries one week ago.
 
@@ -48,11 +48,11 @@ def add_previous_week(data, weeks_ago = 1):
 
     def apply(row):
         # Find the previous day x weeks ago.
-        previous_day = row['service_datetime'] - np.timedelta64(weeks_ago, 'W')
+        previous_day = row[day_col] - np.timedelta64(weeks_ago, 'W')
 
         # Find the entries for this stations exactly x weeks ago.
         entries = data.loc[
-            (data['service_datetime'] == previous_day) &
+            (data[day_col] == previous_day) &
             (data['locationid'] == row['locationid'])
         ]['entries'].values
 
