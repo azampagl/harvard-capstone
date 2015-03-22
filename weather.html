@@ -13,6 +13,7 @@
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/rickshaw.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/freelancer.css" rel="stylesheet">
@@ -95,9 +96,15 @@
                 </div>
             </div>
             <div class="row">
-
-
-
+                <div class="col-md-9">
+                    <div id="chart-snow-container">
+                        <div id="chart-snow-y-axis"></div>
+                        <div id="chart-snow"></div>
+                    </div>
+                </div>
+                <div class="col-md-offset-1 col-md-2">
+                  <div id="chart-snow-legend"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -166,6 +173,11 @@
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
+    <!-- Interactive charts -->
+    <script src="js/d3.min.js"></script>
+    <script src="js/d3.layout.min.js"></script>
+    <script src="js/rickshaw.min.js"></script>
+
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
@@ -174,8 +186,11 @@
     <script src="js/classie.js"></script>
     <script src="js/cbpAnimatedHeader.js"></script>
 
-    <!-- Custom Theme JavaScript -->
+    <!-- Custom JavaScript -->
+    <script src="js/rickshaw.custom.legendtoggle.js"></script>
+
     <script src="js/freelancer.js"></script>
+    <script src="js/weather.js"></script>
 
 </body>
 
