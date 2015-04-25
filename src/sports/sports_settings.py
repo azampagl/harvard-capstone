@@ -6,7 +6,13 @@ This file contains reusable sports settings information that we can share betwee
 
 # Teams.
 teams = ['bruins','celtics','sox']
-team_names = ['Bruins','Celtics','Red Sox']
+
+# Team names.
+team_names = {
+    'bruins':  'Bruins',
+    'celtics': 'Celtics',
+    'sox':     'Red Sox'
+}
 
 # Game lengths in hours for coloring.
 team_game_lengths = {
