@@ -9,7 +9,7 @@ teams = ['bruins','celtics','sox']
 team_names = ['Bruins','Celtics','Red Sox']
 
 # Game lengths in hours for coloring.
-game_lengths = {
+team_game_lengths = {
     'bruins':  2.3333,
     'celtics': 2.25,
     'sox':     3+8./60
@@ -20,6 +20,13 @@ team_colors = {
     'bruins':  '#FDB930',
     'celtics': '#008348',
     'sox':     '#BD3039'
+}
+
+# Team stations.
+team_stations = {
+    'bruins':  'North Station',
+    'celtics': 'North Station',
+    'sox':     'Kenmore & Hynes'
 }
 
 # Lines.
