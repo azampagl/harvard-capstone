@@ -12,8 +12,10 @@ default_chart_format = 'display'
 
 # Figure sizes.
 figsize = {
-    'default': (12,8),
-    'slides': (12,6)
+    'display': (12,8),
+    'slides':  (12,6),
+    'poster':  (9.75,6.5),
+    'poster_small': (3,2)
 }
 
 # Font sizes.
@@ -21,57 +23,65 @@ fontsize = {
     'title': {
         'display': 'x-large',
         'slides': 'xx-large',
-        'poster': 24
+        'poster': 24,
+        'poster_small': 14
     },
     'label': {
         'display': 'large',
         'slides': 'x-large',
-        'poster': 18
+        'poster': 18,
+        'poster_small': 12
+    },
+    'legend': {
+        'display': 'large',
+        'slides': 'x-large',
+        'poster': 18,
+        'poster_small': 12
     },
     'ticks': {
         'display': 'medium',
         'slides': 'x-large',
-        'poster': 14
+        'poster': 14,
+        'poster_small': 10
     },
     'tick_labels': {
         'display': 'medium',
         'slides': 'x-large',
-        'poster': 18
+        'poster': 18,
+        'poster_small': 12
     },
     'game_range': {
         'display': 'large',
         'slides': 'large',
-        'poster': 14
+        'poster': 14,
+        'poster_small': 10
     }
 }
 
 # Line widths.
 line_widths = {
-    'display': 3,
-    'slides':  3,
-    'poster':  4
-}
-
-# Line colors.
-line_colors = {
-    'blue':   (0.44999999999999996, 0.7123853211009172, 1.0),
-    'orange': (1.0, 0.6640217391304348, 0.44999999999999996),
-    'green':  (0.4010294117647058, 0.8911764705882352, 0.5056675479180436),
-    'red':    (1.0, 0.4772277227722773, 0.44999999999999996),
-    'annotation': (0.7181372549019608, 0.55, 1.0)
+    'display':      3,
+    'slides':       3,
+    'poster':       4,
+    'poster_small': 3
 }
 
 # Grid arguments.
 grid_settings = {
     'display': { 'b': True },
     'slides':  { 'b': True },
-    'poster':  { 'b': False }
+    'poster':  { 'b': False },
+    'poster_small':  { 'b': False }
 }
 
+# Annotation color.
+line_annotation_default = (0.7181372549019608, 0.55, 1.0)
+
 # Add a game start line.
-def game_start_line (color=line_colors['annotation'], line_alpha=1, fontsize='medium'):
+def game_start_line (color=line_annotation_default, line_alpha=1, show_text=True, fontsize='medium', axis_rev=True):
     plt.vlines(0, *plt.ylim(), color=color, lw=2, alpha=line_alpha)
-    plt.annotate('Game Start', (.05,plt.ylim()[1]*0.95), rotation='vertical', ha='right', color=color, fontsize=fontsize)
+    if show_text:
+        plt.annotate('Game Start', (.05 * (1 if axis_rev else -1),plt.ylim()[1]*0.95), rotation='vertical', ha='right', color=color, fontsize=fontsize)
 
 # Add a shaded/annotated game range area.
 def game_range (game_length, annotate_start=True, annotate_end=False, fontsize='medium'):
@@ -82,5 +92,5 @@ def game_range (game_length, annotate_start=True, annotate_end=False, fontsize='
         plt.annotate('Game End', (game_length-.05,plt.ylim()[1]*0.98), rotation='vertical', va='top', ha='right', color='k', fontsize=fontsize)
 
 # Add a horizontal line at zero.
-def zero_horizontal_line (line_color=line_colors['annotation'], line_alpha=1):
+def zero_horizontal_line (line_color=line_annotation_default, line_alpha=1):
     plt.hlines(0, *plt.xlim(), colors=line_color, lw=2, alpha=line_alpha)
