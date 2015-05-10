@@ -15,7 +15,8 @@ figsize = {
     'display': (12,8),
     'slides':  (12,6),
     'poster':  (9.75,6.5),
-    'poster_small': (3,2)
+    'poster_small': (3,2),
+    'report_inline': (3.3, 3)
 }
 
 # Font sizes.
@@ -24,46 +25,53 @@ fontsize = {
         'display': 'x-large',
         'slides': 'xx-large',
         'poster': 24,
-        'poster_small': 14
+        'poster_small': 14,
+        'report_inline': 8
     },
     'label': {
         'display': 'large',
         'slides': 'x-large',
         'poster': 18,
-        'poster_small': 12
+        'poster_small': 12,
+        'report_inline': 7
     },
     'legend': {
         'display': 'large',
         'slides': 'x-large',
         'poster': 18,
-        'poster_small': 12
+        'poster_small': 12,
+        'report_inline': 7
     },
     'ticks': {
         'display': 'medium',
         'slides': 'x-large',
         'poster': 14,
-        'poster_small': 10
+        'poster_small': 10,
+        'report_inline': 7
     },
     'tick_labels': {
         'display': 'medium',
         'slides': 'x-large',
         'poster': 18,
-        'poster_small': 12
+        'poster_small': 12,
+        'report_inline': 9
     },
     'game_range': {
         'display': 'large',
         'slides': 'large',
         'poster': 14,
-        'poster_small': 10
+        'poster_small': 10,
+        'report_inline': 8
     }
 }
 
 # Line widths.
 line_widths = {
-    'display':      3,
-    'slides':       3,
-    'poster':       4,
-    'poster_small': 3
+    'display':       3,
+    'slides':        3,
+    'poster':        4,
+    'poster_small':  3,
+    'report_inline': 2
 }
 
 # Grid arguments.
@@ -71,7 +79,8 @@ grid_settings = {
     'display': { 'b': True },
     'slides':  { 'b': True },
     'poster':  { 'b': False },
-    'poster_small':  { 'b': False }
+    'poster_small':  { 'b': False },
+    'report_inline': { 'b': True, 'lw':.25 }
 }
 
 # Annotation color.
