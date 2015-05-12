@@ -12,11 +12,12 @@ default_chart_format = 'display'
 
 # Figure sizes.
 figsize = {
-    'display': (12,8),
-    'slides':  (12,6),
-    'poster':  (9.75,6.5),
-    'poster_small': (3,2),
-    'report_inline': (3.3, 3)
+    'display':       (12,8),
+    'slides':        (12,6),
+    'poster':        (9.75,6.5),
+    'poster_small':  (3,2),
+    'report_inline': (3.3, 3),
+    'web':           (8,6)
 }
 
 # Font sizes.
@@ -26,42 +27,48 @@ fontsize = {
         'slides': 'xx-large',
         'poster': 24,
         'poster_small': 14,
-        'report_inline': 8
+        'report_inline': 8,
+        'web': 'xx-large'
     },
     'label': {
         'display': 'large',
         'slides': 'x-large',
         'poster': 18,
         'poster_small': 12,
-        'report_inline': 7
+        'report_inline': 7,
+        'web': 'x-large'
     },
     'legend': {
         'display': 'large',
         'slides': 'x-large',
         'poster': 18,
         'poster_small': 12,
-        'report_inline': 7
+        'report_inline': 7,
+        'web': 'large'
     },
     'ticks': {
         'display': 'medium',
         'slides': 'x-large',
         'poster': 14,
         'poster_small': 10,
-        'report_inline': 7
+        'report_inline': 7,
+        'web': 'large'
     },
     'tick_labels': {
         'display': 'medium',
         'slides': 'x-large',
         'poster': 18,
         'poster_small': 12,
-        'report_inline': 9
+        'report_inline': 9,
+        'web': 'large'
     },
     'game_range': {
         'display': 'large',
         'slides': 'large',
         'poster': 14,
         'poster_small': 10,
-        'report_inline': 8
+        'report_inline': 8,
+        'web': 'medium'
     }
 }
 
@@ -71,7 +78,8 @@ line_widths = {
     'slides':        3,
     'poster':        4,
     'poster_small':  3,
-    'report_inline': 2
+    'report_inline': 2,
+    'web':           2
 }
 
 # Grid arguments.
@@ -80,7 +88,8 @@ grid_settings = {
     'slides':  { 'b': True },
     'poster':  { 'b': False },
     'poster_small':  { 'b': False },
-    'report_inline': { 'b': True, 'lw':.25 }
+    'report_inline': { 'b': True, 'lw':.25 },
+    'web': { 'b': True, 'lw': .25 }
 }
 
 # Annotation color.
