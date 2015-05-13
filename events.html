@@ -9,15 +9,16 @@
     <meta name="description" content="Harvard Capstone - Improving the MBTA through Data.">
     <meta name="author" content="lyla fadden, micah lanier, filip piasevoli, aaron zampaglione">
 
-    <title>MBTA Capstone</title>
+    <title>MBTA Capstone - Events</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/rickshaw.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/freelancer.css" rel="stylesheet">
     <link href="css/mbta.css" rel="stylesheet">
-    <link href="css/index.css" rel="stylesheet">
+    <link href="css/weather.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -39,24 +40,25 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-top">MBTA Capstone</a>
+                <a class="navbar-brand" href="index.html">MBTA Capstone</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="hidden">
-                        <a href="#page-top"></a>
+                        <a href="index.html"></a>
                     </li>
                     <li class="page-scroll">
                         <a href="#about">About</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#questions">Questions</a>
+                        <a href="#visuals">Visuals</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#contact">Contact</a>
+                        <a href="#analysis">Analysis</a>
                     </li>
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -64,21 +66,7 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <img class="img-responsive" src="img/mbta.png" alt="">
-                    <div class="intro-text">
-                        <span class="name">MBTA Capstone</span>
-                        <hr class="star-light">
-                        <span class="skills">An attempt to improve the MBTA through Data.</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+    <br>
 
     <!-- About Section -->
     <section id="about">
@@ -87,79 +75,44 @@
                 <div class="col-lg-12 text-center">
                     <h2>About</h2>
                     <hr class="star-primary">
-                    <p>Using data to provide insight to ridership patterns.</p>
+                    <p>How do public events affect ridership?</p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-lg-offset-2">
-                    <p>Lorem ipsum dolor sit amet, odio nonumes assentior ad est, vis ne alii impedit, ornatus epicurei nec ex. Duo constituto definitionem no, ea luptatum consulatu consetetur eum. Vis velit corrumpit ad, te tale dolorum eos. Insolens sapientem ea sit, in nec tantas labore partiendo.</p>
-                </div>
-                <div class="col-lg-4">
-                    <p>Est ut everti aperiri argumentum, eos id etiam mediocrem efficiantur, inani oblique invidunt ea ius. Eos at nisl labitur torquatos, vim enim omnis necessitatibus ad, aliquid sanctus ut eos. Vix eu fabellas accusata adolescens, erat omnis congue sit eu. Qui cu mediocrem forensibus, nec ad omnes invenire. Erat option no vim, ea nihil doming intellegebat mei.</p>
+                <div class="col-lg-8 col-lg-offset-2">
+                    <p>Major public events like concerts and sporting events cause sudden spikes in demand for public transportation—an important concern for transportation planners. To understand this effect, we analyzed ridership before and after Bruins, Celtics, and Red Sox games. We calculated "lift" in entries across the entire T system and at the particular stations that serve each team's venue. Each team shows characteristic patterns both in how fans commute to games and how they use the T to get home.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Questions -->
-    <section id="questions">
+    <!-- Visuals -->
+    <section id="visuals">
         <div class="container">
             <div class="row section-header">
                 <div class="col-lg-12 text-center">
-                    <h2>Questions</h2>
+                    <h2>Visuals</h2>
                     <hr class="star-primary">
-                    <p>In order to improve the MBTA we needed to ask the right questions.<br>Afterall, <i>"It is not the answer that enlightens, but the question."</i> - Eugene Ionesco</p>
+                    <p>We've decided to make the visuals a seperate project. Please visit <a href="http://micahlanier.github.io/cs171-gameday/">MBTA Gameday</a> for the full interactive visualization!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analysis -->
+    <section id="analysis">
+        <div class="container">
+            <div class="row section-header">
+                <div class="col-lg-12 text-center">
+                    <h2>Analysis</h2>
+                    <hr class="star-primary">
+                    <p>Below is an embedded IPython Notebook - please download or scroll through the notebook for the detailed analysis.</p>
                 </div>
             </div>
             <div class="row">
-
-                <div class="col-md-6 approach-item">
-                    <a href="weather.html">
-                        <span class="fa-stack fa-4x">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-sun-o fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <h4>Weather</h4>
-                    </a>
-                    <p>How does weather affect ridership?</p>
+                <div class="col-md-12">
+                    <iframe src="http://nbviewer.ipython.org/github/azampagl/harvard-capstone/blob/master/src/release/Sports.ipynb" height="700" width="100%" scrolling="yes" frameborder="0" allowfullscreen></iframe>
                 </div>
-
-                <div class="col-md-6 approach-item">
-                    <a href="events.html">
-                        <span class="fa-stack fa-4x">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-ticket fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <h4>Events</h4>
-                    </a>
-                    <p>How do public events affect ridership?</p>
-                </div>
-
-            </div>
-            <div class="row">
-
-              <div class="col-md-6 approach-item">
-                  <a href="correlation.html">
-                      <span class="fa-stack fa-4x">
-                          <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-exchange fa-stack-1x fa-inverse"></i>
-                      </span>
-                      <h4>Correlation</h4>
-                  </a>
-                  <p>What stations are similar?</p>
-              </div>
-
-              <div class="col-md-6 approach-item">
-                  <a href="prediction.html">
-                      <span class="fa-stack fa-4x">
-                          <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
-                      </span>
-                      <h4>Prediction</h4>
-                  </a>
-                  <p>Are we able to predict ridership?</p>
-              </div>
-
             </div>
         </div>
     </section>
@@ -228,6 +181,11 @@
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
+    <!-- Interactive charts -->
+    <script src="js/d3.min.js"></script>
+    <script src="js/d3.layout.min.js"></script>
+    <script src="js/rickshaw.min.js"></script>
+
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
@@ -236,8 +194,11 @@
     <script src="js/classie.js"></script>
     <script src="js/cbpAnimatedHeader.js"></script>
 
-    <!-- Custom Theme JavaScript -->
+    <!-- Custom JavaScript -->
+    <script src="js/rickshaw.custom.legendtoggle.js"></script>
+
     <script src="js/freelancer.js"></script>
+    <script src="js/weather.js"></script>
 
 </body>
 
